@@ -1,0 +1,84 @@
+name: wins_pkr
+description: A new Flutter project.
+
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <4.0.0'
+
+
+dependencies:
+  flame: ^1.7.3
+  flame_forge2d: ^0.13.0+1
+  another_flushbar: ^1.12.30
+  carousel_slider: ^5.0.0
+  intl: ^0.19.0
+  shared_preferences:
+  provider: ^6.1.2
+  fluttertoast: ^8.2.4
+  dio: ^5.4.0
+  flutter_widget_from_html:
+  flutter_share:
+  url_launcher:
+  webview_flutter:
+  image_picker: ^1.1.2
+  just_audio: ^0.9.36
+  audioplayers:
+  animated_text_kit: ^4.2.2
+  dotted_border: ^2.1.0
+  connectivity_plus: ^5.0.2
+  url_strategy: ^0.3.0
+  share_plus:
+  http:
+  socket_io_client: ^2.0.3+1
+  draggable_fab: ^0.1.4
+  add_to_cart_animation:
+  fwfh_text_style: ^2.23.8
+  page_transition: ^2.1.0
+  flutter_flip_card:
+  wakelock_plus:
+  install_plugin: ^2.1.0
+
+
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assetss/images/
+    - assetss/images/coin/
+    - assetss/images/robot/
+    - assetss/images/explosion/
+    - assetss/
+    - assets/
+    - assets/trx/
+    - assets/vip/
+    - assets/chips/
+    - assets/icons/
+    - assets/mines/
+    - assets/music/
+    - assets/images/
+    - assets/person/
+    - assets/win_go/
+    - assets/aviator/
+    - assets/category/
+    - assets/Andarbahar/
+    - assets/dragontiger/
+    - assets/cards/
+
+
