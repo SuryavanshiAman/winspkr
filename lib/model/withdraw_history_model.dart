@@ -28,24 +28,24 @@ class WithdrawHistoryModel {
 }
 
 class Data {
-  int? id;
-  int? userId;
-  String? amount;
-  int? actualAmount;
-  String? mobile;
-  int? accountId;
-  int? type;
-  String? usdtWalletAddress;
-  String? orderId;
-  String? payout;
-  String? remark;
-  String? response;
-  int? status;
-  String? typeimage;
-  String? referenceId;
-  String? rejectMsg;
-  String? createdAt;
-  String? updatedAt;
+  dynamic id;
+  dynamic userId;
+  dynamic amount;
+  dynamic actualAmount;
+  dynamic mobile;
+  dynamic accountId;
+  dynamic type;
+  dynamic usdtWalletAddress;
+  dynamic orderId;
+  dynamic payout;
+  dynamic remark;
+  dynamic response;
+  dynamic status;
+  dynamic typeimage;
+  dynamic referenceId;
+  dynamic rejectMsg;
+  dynamic createdAt;
+  dynamic updatedAt;
 
   Data(
       {this.id,

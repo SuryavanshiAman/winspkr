@@ -637,7 +637,7 @@ class _DragonTigerState extends State<DragonTiger> {
                             height: height * 0.035,
                             child: Center(
                               child: Text(
-                                  'Rs${userData!.data!.wallet == null ? "" : userData.data!.wallet.toString()}',
+                                  'Rs${userData!.data!.wallet == null ? "" : userData.data!.wallet.toStringAsFixed(2)}',
                                   style: const TextStyle(
                                       color: AppColors.goldColor,
                                       fontWeight: FontWeight.w600,

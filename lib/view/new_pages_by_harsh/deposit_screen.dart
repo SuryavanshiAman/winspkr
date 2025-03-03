@@ -82,7 +82,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 Text(
                                   mainWallet== null
                                       ? '0.00'
-                                      : mainWallet.toString(),
+                                      : mainWallet.toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w900,
                                     fontSize: 28,

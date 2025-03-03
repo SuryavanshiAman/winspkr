@@ -273,7 +273,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
                         fontWeight: FontWeight.w600,
                       ),
                       Text(
-                        userData!.wallet.toString(),
+                        userData!.wallet.toStringAsFixed(2),
                         style: const TextStyle(fontSize: 15,
                             color: Colors.white,
                             fontWeight: FontWeight.w600),

@@ -17,29 +17,27 @@ class UsdtWithdrawViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> usdtWithdrawApi(dynamic usdtWalletAddress, dynamic amountInr, dynamic usdtAmount, context) async {
+  Future<void> usdtWithdrawApi(dynamic usdtWalletAddress, dynamic usdtAmount, dynamic amountInr , context) async {
     UserViewModel userViewModal = UserViewModel();
     String? userId = await userViewModal.getUser();
     setLoadingOne(true);
+
     Map data = {
       "user_id":userId,
       "usdt_wallet_address":usdtWalletAddress,
       "amount_inr":amountInr,
       "usdt_amount":usdtAmount,
-      "type":"3"
+      "type":"2"
     };
+    print(data);
     _usdtWithdrawRepository.usdtWithdrawApi(data).then((value) async {
       if (value['status'] == 200) {
         setLoadingOne(false);
-        Utils.flushBarSuccessMessage(
-          value['message'].toString(),
-          context,
+        Utils.flushBarSuccessMessage(value['message'].toString(), context,
         );
       } else {
         setLoadingOne(false);
-        Utils.flushBarErrorMessage(
-          value['message'].toString(),
-          context,
+        Utils.flushBarErrorMessage(value['message'].toString(), context,
         );
       }
     }).onError((error, stackTrace) {

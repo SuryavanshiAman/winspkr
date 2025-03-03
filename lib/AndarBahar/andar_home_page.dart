@@ -539,7 +539,7 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
                                   ),
                                   child: Center(
                                       child: Text(
-                                        wallet.toString(),
+                                        wallet.toStringAsFixed(2),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 14,

@@ -25,11 +25,10 @@ class DepositViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  int _selectedCard = 0;
+  int _selectedCard = 1;
   int get selectedCard => _selectedCard;
   setSelectCard(int value) {
     _selectedCard = value;
-
     notifyListeners();
   }
 
@@ -109,6 +108,7 @@ class DepositViewModel with ChangeNotifier {
       "amount": depositCon,
       "type": selectedCard.toString(),
     };
+    print("Aman:$data");
     _depositRepository.usdtPayIn(data).then((value) {
       if (value['status'] == 200) {
         setLoading(false);

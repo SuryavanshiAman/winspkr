@@ -28,12 +28,12 @@ class DepositHistoryModel {
 }
 
 class Data {
-  int? cash;
-  int? type;
-  int? status;
-  String? orderId;
-  String? typeimages;
-  String? createdAt;
+  dynamic cash;
+  dynamic type;
+  dynamic status;
+  dynamic orderId;
+  dynamic typeimages;
+  dynamic createdAt;
 
   Data(
       {this.cash,

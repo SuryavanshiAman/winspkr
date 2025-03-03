@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:wins_pkr/model/show_qr_model.dart';
 import 'package:wins_pkr/repo/show_qr_repo.dart';
+import 'package:wins_pkr/utils/routes/routers_name.dart';
 import 'package:wins_pkr/utils/utils.dart';
 import 'package:wins_pkr/view_modal/user_view_modal.dart';
 
@@ -45,9 +47,11 @@ class ShowQrViewModel with ChangeNotifier {
       "type":type,
       "screenshot":screenshot
     };
+    print("Aman:$data");
     _showQrRepository.usdtAccountViewApi(data).then((value) async {
       if (value['status'] == 200) {
         setLoadingOne(false);
+        Navigator.pushNamed(context, RoutesName.bottomNavBar);
         Utils.flushBarSuccessMessage(
           value['message'].toString(),
           context,

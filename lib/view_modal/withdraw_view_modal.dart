@@ -28,11 +28,10 @@ class WithdrawViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  int _selectedCard = 0;
+  int _selectedCard = 1;
   int get selectedCard => _selectedCard;
   setSelectCard(int value) {
     _selectedCard = value;
-
     notifyListeners();
   }
 
@@ -54,12 +53,14 @@ class WithdrawViewModel with ChangeNotifier {
     setLoading(true);
     UserViewModel userViewModal = UserViewModel();
     String? userId = await userViewModal.getUser();
-    _withdrawRepository.withdrawHistoryApi(userId, type).then((value) {
+    _withdrawRepository.withdrawHistoryApi(userId.toString(), type.toString()).then((value) {
       if (value.status == 200) {
         setLoading(false);
         setHistoryData(value);
+        Utils.flushBarSuccessMessage(value.message.toString(), context);
       } else {
         setLoading(false);
+        Utils.flushBarErrorMessage(value.message.toString(), context);
       }
     }).onError((error, stackTrace) {
       setLoading(false);

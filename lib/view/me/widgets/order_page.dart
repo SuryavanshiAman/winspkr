@@ -19,7 +19,7 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   int selectedIndex = 0;
-
+int selectedPaymentIndex=0;
   void selectContainer(int index) {
     setState(() {
       selectedIndex = index;
@@ -30,25 +30,30 @@ class _OrderScreenState extends State<OrderScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final depositViewModel =
-          Provider.of<DepositViewModel>(context, listen: false);
+
+      final depositViewModel = Provider.of<DepositViewModel>(context, listen: false);
+      depositViewModel.setSelectCard(1);
       depositViewModel.depositHistoryApi(context,depositViewModel.selectedCard);
-      final withdrawViewModel =
-          Provider.of<WithdrawViewModel>(context, listen: false);
+      ///
+      final withdrawViewModel = Provider.of<WithdrawViewModel>(context, listen: false);
+      withdrawViewModel.setSelectCard(1);
       withdrawViewModel.withdrawHistoryApi(context, withdrawViewModel.selectedCard);
       selectedIndex = widget.initialIndex;
+
+
     });
   }
   // int selectedCard = 0;
 
   List<Map<String, String>> items = [
     {'title': 'E-Wallet', 'image': "assets/icons/order_pay.png"},
-    // {'title': 'USDT-TRC20', 'image': Assets.iconsUsdtIcon},
+    {'title': 'USDT-TRC20', 'image': Assets.iconsUsdtIcon},
   ];
   @override
   Widget build(BuildContext context) {
     final depositViewModel = Provider.of<DepositViewModel>(context);
     final withdrawViewModel = Provider.of<WithdrawViewModel>(context);
+    // print(depositViewModel.depositHistoryData!.data?[0].cash??"");
     return Scaffold(
       appBar: GradientAppBar(
         elevation: 10,
@@ -135,18 +140,18 @@ class _OrderScreenState extends State<OrderScreen> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        // setState(() {
-                        //   selectedCard = index;
-                        // });
-                        withdrawViewModel.setSelectCard(index);
-                         depositViewModel.setSelectCard(index);
+                        setState(() {
+                          selectedPaymentIndex=index;
+                        });
+                        withdrawViewModel.setSelectCard(index+1);
+                         depositViewModel.setSelectCard(index+1);
                         withdrawViewModel.withdrawHistoryApi(context, withdrawViewModel.selectedCard);
                         depositViewModel.depositHistoryApi(context,depositViewModel.selectedCard);
                       },
                       child: Card(
                         child: Container(
                           decoration: BoxDecoration(
-                            gradient: withdrawViewModel.selectedCard == index
+                            gradient: selectedPaymentIndex == index
                                 ? AppColors.appButton
                                 : null,
                             borderRadius: BorderRadius.circular(10),
@@ -174,7 +179,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                   fontSize: 12,
                                   fontWeight: FontWeight.w900,
                                   color: withdrawViewModel.selectedCard == index
-                                      ? AppColors.whiteColor
+                                      ? AppColors.blackColor
                                       : AppColors.blackColor,
                                 ),
                               ),
@@ -190,13 +195,13 @@ class _OrderScreenState extends State<OrderScreen> {
             SizedBox(
               height: height * 0.02,
             ),
-            if (withdrawViewModel.withdrawHistoryData != null)
-              if (selectedIndex == 0)
+            // if (withdrawViewModel.withdrawHistoryData != null)
+              if (selectedIndex == 0 || widget.initialIndex==2)
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount:
-                      withdrawViewModel.withdrawHistoryData!.data!.length,
+                      withdrawViewModel.withdrawHistoryData?.data?.length??0,
                   itemBuilder: (context, index) {
                     final withdrawData =
                         withdrawViewModel.withdrawHistoryData!.data![index];
@@ -238,7 +243,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             walletHistoryInfo(
                               context,
                               "Type",
-                              withdrawData.type.toString()== "0"?"INR":"USDT",
+                              withdrawData.type.toString()== "1"?"Rs":"USDT",
                               width,
                               height,
                             ),
@@ -266,12 +271,11 @@ class _OrderScreenState extends State<OrderScreen> {
                   },
                 )
               else
-
                 ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: depositViewModel.depositHistoryData!.data!.length,
+                  itemCount: depositViewModel.depositHistoryData?.data?.length??0,
                   itemBuilder: (context, index) {
                     final depositData =
                         depositViewModel.depositHistoryData!.data![index];
@@ -311,7 +315,7 @@ class _OrderScreenState extends State<OrderScreen> {
                           walletHistoryInfo(
                             context,
                             "Type",
-                            depositData.type.toString() == "0"?"INR":"USDT",
+                            depositData.type.toString() == "1"?"PKR":"USDT",
                             width,
                             height,
                           ),

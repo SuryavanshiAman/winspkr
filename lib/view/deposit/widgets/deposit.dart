@@ -300,7 +300,7 @@ class _DepositState extends State<Deposit> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SaveScreenShot(type:"2",
+                                      builder: (context) => SaveScreenShot(type:"1",
                                           amount: depositCon.text.toString())));
                             },
                             title: 'Submit',
@@ -473,7 +473,7 @@ class _DepositState extends State<Deposit> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => SaveScreenShot(type:"3",
+                                            builder: (context) => SaveScreenShot(type:"2",
                                                 amount: usdtRupeeCon.text.toString()
                                             )));
                                   },

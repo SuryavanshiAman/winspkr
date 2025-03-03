@@ -475,18 +475,17 @@ class _WithdrawState extends State<Withdraw> {
                           const SizedBox(height: 20),
                           CustomTextField(
                             widths: width * 0.92,
+                            heights: 50,
                             controller: wwm.withdrawCon,
                             fillColor: AppColors.whiteColor,
-                            maxLength: 10,
                             keyboardType: TextInputType.number,
                             hintText: "Enter Withdrawal Amount",
                             hintColor: AppColors.blackColor,
                             textColor: AppColors.blackColor,
-                            contentPadding: EdgeInsets.only(top: 35),
                             filled: true,
                             prefixIcon:Image.asset("assets/icons/rs.png",scale: 4.5,),
                                 // const Icon(Icons.currency_rupee_outlined),
-                            cursorColor: AppColors.whiteColor,
+                            cursorColor: AppColors.blackColor,
                             onChanged: (v) {
                               wwm.setGetWithdraw(double.parse(v));
                             },
@@ -544,9 +543,7 @@ class _WithdrawState extends State<Withdraw> {
                                     context,
                                   );
                                 } else if (profileViewModel
-                                        .profileData!.data!.winningWallet <
-                                    (double.parse(wwm.withdrawCon.text) +
-                                        wwm.inconvenienceFee)) {
+                                        .profileData!.data!.winningWallet < (double.parse(wwm.withdrawCon.text) + wwm.inconvenienceFee)) {
                                   Utils.flushBarErrorMessage(
                                     "Insufficient withdrawal amount",
                                     context,
@@ -556,7 +553,7 @@ class _WithdrawState extends State<Withdraw> {
                                       wwm.withdrawCon.text,
                                       bankViewModel.bankDataModel!
                                           .data![wwm.selectedBank].id,
-                                      "2",
+                                      "1",
                                       context);
                                 }
                               } else {

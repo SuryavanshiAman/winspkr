@@ -63,7 +63,7 @@ class _WinGoWalletState extends State<WinGoWallet> {
                 fontWeight: FontWeight.w600,
               ),
                TextWidget(
-                title: userProfileViewModel.profileData!.data!.wallet.toString(),
+                title: userProfileViewModel.profileData!.data!.wallet.toStringAsFixed(2),
                 fontSize: 20,
                 color: AppColors.whiteColor,
                 fontWeight: FontWeight.w600,
