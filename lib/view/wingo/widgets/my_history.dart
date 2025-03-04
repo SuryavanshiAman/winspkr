@@ -122,8 +122,8 @@ class _WingoMyHisState extends State<WingoMyHis> {
                           title: betHistoryData.status == 0
                               ? "Pending"
                               : betHistoryData.status == 1
-                                  ? "Success"
-                                  : "Failed",
+                                  ? "Wins"
+                                  : "Loss",
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
                           titleColor: betHistoryData.status == 0
@@ -190,11 +190,11 @@ class _WingoMyHisState extends State<WingoMyHis> {
                               "Rs ${betHistoryData.tradeAmount}",
                               Colors.green,
                             ),
-                            wingoGameHistoryDetail(
-                              "TAX",
-                              "Rs ${betHistoryData.commission}",
-                              Colors.green,
-                            ),
+                            // wingoGameHistoryDetail(
+                            //   "TAX",
+                            //   "Rs ${betHistoryData.commission}",
+                            //   Colors.green,
+                            // ),
                             wingoGameHistoryDetail(
                               "Result",
                               betHistoryData.winNumber.toString(),
@@ -210,8 +210,8 @@ class _WingoMyHisState extends State<WingoMyHis> {
                               betHistoryData.status == 0
                                   ? "Pending"
                                   : betHistoryData.status == 1
-                                      ? "Success"
-                                      : "Failed",
+                                      ? "Wins"
+                                      : "Loss",
                               Colors.red,
                             ),
                             wingoGameHistoryDetail(

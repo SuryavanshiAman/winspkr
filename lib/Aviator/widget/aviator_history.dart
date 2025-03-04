@@ -76,7 +76,7 @@ class _AviatorHistoryState extends State<AviatorHistory> {
                   Container(
                     alignment: Alignment.center,
                     width: width * 0.3,
-                    child: const Text("Bet, INR X",
+                    child: const Text("Bet, Rs X",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
@@ -85,7 +85,7 @@ class _AviatorHistoryState extends State<AviatorHistory> {
                   Container(
                     alignment: Alignment.centerRight,
                     width: width * 0.3,
-                    child: const Text("Win, INR",
+                    child: const Text("Win, Rs",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 12,

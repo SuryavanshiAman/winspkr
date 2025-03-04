@@ -155,7 +155,7 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
                                     .secondaryTextColor: Colors.green)),
                         child: Center(
                           child:  Text(
-                            items.status==2?'Failed':items.status==0?'Pending':'Succeed',
+                            items.status==2?'Loss':items.status==0?'Pending':'Wins',
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight:
@@ -263,8 +263,8 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
                               'Amount after tax',
                               items.tradeAmount.toString(),
                               Colors.red),
-                          historyDetails('Tax',
-                              items.commission.toString(), Colors.white),
+                          // historyDetails('Tax',
+                          //     items.commission.toString(), Colors.white),
                           historyWinDetails(
                               'Result',
                               items.winNumber==null? '--': '${items.winNumber}, ',
@@ -284,7 +284,7 @@ class _DragonTigerHistoryState extends State<DragonTigerHistory> {
                           historyDetails('Status',
                               items.status==0?'Unpaid':
                               items.status==2?
-                              'Failed':'Succeed', items.status==0?Colors.white:items.status==2?Colors.red:Colors.green),
+                              'Loss':'Wins', items.status==0?Colors.white:items.status==2?Colors.red:Colors.green),
                           historyDetails('Win/Loss',
                               items.status==0?'--': 'Rs${items.winAmount.toStringAsFixed(2)}', items.status==0?Colors.white:items.status==2? Colors.red:Colors.green),
                           historyDetails(

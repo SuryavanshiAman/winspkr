@@ -152,10 +152,10 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
                                   child: Center(
                                     child: Text(
                                       itemsDataHistory[index].status == 2
-                                          ? 'Failed'
+                                          ? 'Loss'
                                           : itemsDataHistory[index].status == 0
                                               ? 'Pending'
-                                              : 'Succeed',
+                                              : 'Wins',
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w700,
@@ -263,12 +263,12 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
                                             .tradeAmount
                                             .toString(),
                                         Colors.red),
-                                    historyDetails(
-                                        'Tax',
-                                        itemsDataHistory[index]
-                                            .commission
-                                            .toString(),
-                                        Colors.white),
+                                    // historyDetails(
+                                    //     'Tax',
+                                    //     itemsDataHistory[index]
+                                    //         .commission
+                                    //         .toString(),
+                                    //     Colors.white),
                                     historyWinDetails(
                                         'Result',
                                         itemsDataHistory[index].winNumber ==
@@ -305,8 +305,8 @@ class _AndarBaharHistoryState extends State<AndarBaharHistory> {
                                             ? 'Unpaid'
                                             : itemsDataHistory[index].status ==
                                                     2
-                                                ? 'Failed'
-                                                : 'Succeed',
+                                                ? 'Loss'
+                                                : 'Wins',
                                         itemsDataHistory[index].status == 0
                                             ? Colors.white
                                             : itemsDataHistory[index].status ==

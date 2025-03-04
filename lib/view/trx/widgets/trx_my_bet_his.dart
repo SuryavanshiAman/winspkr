@@ -156,10 +156,10 @@ class _TrxMyBetHisState extends State<TrxMyBetHis> {
                         child: Center(
                           child: Text(
                             res.status == 2
-                                ? 'Failed'
+                                ? 'Loss'
                                 : res.status == 0
                                     ? 'Pending'
-                                    : 'Succeed',
+                                    : 'Wins',
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
@@ -238,8 +238,8 @@ class _TrxMyBetHisState extends State<TrxMyBetHis> {
                               res.amount.toString(), Colors.white),
                           historyDetails('Amount after tax',
                               res.tradeAmount.toString(), Colors.red),
-                          historyDetails(
-                              'Tax', res.commission.toString(), Colors.white),
+                          // historyDetails(
+                          //     'Tax', res.commission.toString(), Colors.white),
                           historyWinDetails(
                               'Result',
                               res.winNumber == null
@@ -289,8 +289,8 @@ class _TrxMyBetHisState extends State<TrxMyBetHis> {
                               res.status == 0
                                   ? 'Unpaid'
                                   : res.status == 2
-                                      ? 'Failed'
-                                      : 'Succeed',
+                                      ? 'Loss'
+                                      : 'Wins',
                               res.status == 0
                                   ? Colors.white
                                   : res.status == 2
