@@ -98,10 +98,8 @@ class _SubordinateDataPageState extends State<SubordinateDataPage> {
                 ),
                 DateWidget(
                   onDateSelected: () {
-                    subData.subordinateTierApi(context,
-                        '${subTier.tierModelData!.data![subData.selectedTier].id}',1,
-                        date:
-                            '${subData.selectedDate.year}-${subData.selectedDate.month}-${subData.selectedDate.day}');
+                    print("aman");
+                    subData.subordinateTierApi(context, '${subTier.tierModelData!.data![subData.selectedTier].id}',1, date: '${subData.selectedDate.year}-${subData.selectedDate.month}-${subData.selectedDate.day}');
                   },
                 )
               ],
@@ -575,6 +573,9 @@ class DateWidgetState extends State<DateWidget> {
   }
 
   Future<void> _showMonthPicker(BuildContext context) async {
+    final resData = Provider.of<SubordinateDataViewModel>(context,listen: false);
+    final subData = Provider.of<SubordinateDataViewModel>(context,listen: false);
+    final subTier = Provider.of<SubordinateTierViewModel>(context,listen: false);
     DateTime? selectedDate = await showModalBottomSheet<DateTime>(
       backgroundColor: Colors.transparent,
       shape: const RoundedRectangleBorder(
@@ -607,7 +608,13 @@ class DateWidgetState extends State<DateWidget> {
                     ),
                   ),
                   InkWell(
-                    onTap: widget.onDateSelected,
+                    onTap:(){
+                      widget.onDateSelected;
+                      subData.subordinateTierApi(context, '${subTier.tierModelData!.data![subData.selectedTier].id}',1, date: '${subData.selectedDate.year}-${subData.selectedDate.month}-${subData.selectedDate.day}');
+
+                      resData.setDate(_selectedDate);
+                      Navigator.pop(context);
+                    } ,
                     child: const Text(
                       'Confirm',
                       style: TextStyle(fontSize: 18, color: Colors.white),

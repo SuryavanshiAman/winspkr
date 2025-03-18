@@ -40,9 +40,12 @@ class SubordinateDataViewModel with ChangeNotifier {
 
   Future<void> subordinateTierApi(context, dynamic tierId,int status,
       {String date = "", String search = ""}) async {
+    print("aman");
     setLoading(true);
     UserViewModel userViewModal = UserViewModel();
     String? userId = await userViewModal.getUser();
+    print(userId);
+    print(tierId);
     Map data = {
       "id": userId,
       "tier": tierId,

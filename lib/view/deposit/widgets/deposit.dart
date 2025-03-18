@@ -30,7 +30,8 @@ class _DepositState extends State<Deposit> {
   TextEditingController usdtRupeeCon = TextEditingController();
   List<int> amountList = [ 300, 500, 1000, 2000, 3000, 5000, 10000, 20000,50000];
   List<String> rechargeInstruction = [
-    'Minimum deposit: 10USDT , deposits less than 10USDT  will not be credited',
+    'You will get on First deposit 10% bonus after that on every deposit you will get 3% of every Deposit.'
+    // 'Minimum deposit: 10USDT , deposits less than 10USDT  will not be credited',
   ];
   List<int> usdtList = [
     10,

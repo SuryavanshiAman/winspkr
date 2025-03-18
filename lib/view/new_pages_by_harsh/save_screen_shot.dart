@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:wins_pkr/constants/app_button.dart';
 import 'package:wins_pkr/constants/app_colors.dart';
 import 'package:wins_pkr/constants/gradient_app_bar.dart';
 import 'package:wins_pkr/constants/text_widget.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:wins_pkr/res/image_picker.dart';
 import 'package:wins_pkr/view_modal/show_qr_view_model.dart';
 
 class SaveScreenShot extends StatefulWidget {
@@ -36,16 +39,55 @@ class _SaveScreenShotState extends State<SaveScreenShot> {
     });
   }
 
-  Future<void> _pickImage(ImageSource source) async {
-    final XFile? pickedFile = await _picker.pickImage(source: source);
-    if (pickedFile != null) {
+  // Future<void> _pickImage(ImageSource source) async {
+  //   final XFile? pickedFile = await _picker.pickImage(source: source);
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       imagePath = pickedFile.path;
+  //     });
+  //   }
+  // }
+  String myData = '0';
+  // Method for Android and iOS
+  void _updateImageMobile(ImageSource imageSource) async {
+    String? imageData = await ChooseImage.chooseImageAndConvertToString(imageSource);
+    if (imageData != null) {
       setState(() {
-        imagePath = pickedFile.path;
+        myData = imageData;
       });
     }
   }
 
+// Method for Web
+
+  void _updateImageWeb() async {
+    if (kIsWeb) { // Ensures this is only executed in a web environment
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+        withData: true, // Needed for web
+      );
+
+      if (result != null && result.files.single.bytes != null) {
+        setState(() {
+          myData = base64Encode(result.files.single.bytes!);
+        });
+      }
+    } else {
+      // Handle mobile-specific file picking
+    }
+  }
+// Unified method to handle both platforms
+  void _updateImage(ImageSource? imageSource) {
+    if (kIsWeb) {
+      _updateImageWeb();
+    } else {
+      _updateImageMobile(imageSource!);
+    }
+  }
   void _settingModalBottomSheet(BuildContext context) {
+    if(kIsWeb){
+      _updateImage(null);
+    }else{
     showModalBottomSheet(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -60,14 +102,14 @@ class _SaveScreenShotState extends State<SaveScreenShot> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  _pickImage(ImageSource.camera);
+                  _updateImage(ImageSource.camera);
                   Navigator.pop(context);
                 },
                 child: const Text("Camera"),
               ),
               ElevatedButton(
                 onPressed: () {
-                  _pickImage(ImageSource.gallery);
+                  _updateImage(ImageSource.gallery);
                   Navigator.pop(context);
                 },
                 child: const Text("Gallery"),
@@ -76,7 +118,7 @@ class _SaveScreenShotState extends State<SaveScreenShot> {
           ),
         );
       },
-    );
+    );}
   }
 
   @override
@@ -157,14 +199,21 @@ class _SaveScreenShotState extends State<SaveScreenShot> {
             ],
           ),
           const SizedBox(height: 20),
-          Center(
-            child: uploadedImageUrl.isNotEmpty
-                ? Image.network(uploadedImageUrl,
-                    height: 150, width: 150, fit: BoxFit.cover)
-                : imagePath.isNotEmpty
-                    ? Image.file(File(imagePath),
-                        height: 150, width: 150, fit: BoxFit.cover)
-                    : const Text("No image selected"),
+          // Center(
+          //   child: uploadedImageUrl.isNotEmpty
+          //       ? Image.network(uploadedImageUrl,
+          //           height: 150, width: 150, fit: BoxFit.cover)
+          //       : imagePath.isNotEmpty
+          //           ? Image.file(File(imagePath),
+          //               height: 150, width: 150, fit: BoxFit.cover)
+          //           : const Text("No image selected"),
+          // ),
+          myData=="0"?Center(child: Text("No image selected")): Center(
+            child: SizedBox(
+              // height: height * 0.1,
+              child: Image.memory(base64Decode(myData),fit: BoxFit.fill,scale: 3,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
           Center(
@@ -180,14 +229,14 @@ class _SaveScreenShotState extends State<SaveScreenShot> {
           AppBtn(
             loading: submitScreenShot.loadingOne,
             onTap: () async {
-              if (imagePath.isNotEmpty) {
+              if (myData!="0") {
                 try {
-                  List<int> imageBytes = await File(imagePath).readAsBytes();
-                  String base64Image = base64Encode(imageBytes);
+                  // List<int> imageBytes = await File(imagePath).readAsBytes();
+                  // String base64Image = base64Encode(imageBytes);
                   await submitScreenShot.usdtAccountViewApi(
                     widget.amount,
                     widget.type,
-                    base64Image,
+                    myData,
                     context,
                   );
                 } catch (e) {

@@ -20,27 +20,27 @@ class EarnMoneyController with ChangeNotifier {
 
   List<PeopleEarnModel> peopleEarnList = [
     PeopleEarnModel(
-        title: 'v13', subtitle: 'Rs160,000,000', amount: '377', bet: "1.5"),
+        title: 'v13', subtitle: 'Rs160,000,000', amount: '377', bet: "1.7"),
     PeopleEarnModel(
-        title: 'v12', subtitle: 'Rs85,000,000', amount: '233', bet: "1.4"),
+        title: 'v12', subtitle: 'Rs85,000,000', amount: '233', bet: "1.6"),
     PeopleEarnModel(
-        title: 'v11', subtitle: 'Rs50,000,000', amount: '144', bet: "1.3"),
+        title: 'v11', subtitle: 'Rs50,000,000', amount: '144', bet: "1.5"),
     PeopleEarnModel(
-        title: 'v10', subtitle: 'Rs26,000,000', amount: '89', bet: "1.2"),
+        title: 'v10', subtitle: 'Rs26,000,000', amount: '89', bet: "1.4"),
     PeopleEarnModel(
-        title: 'v9', subtitle: 'Rs14,000,000', amount: '55', bet: "1.1"),
+        title: 'v9', subtitle: 'Rs14,000,000', amount: '55', bet: "1.3"),
     PeopleEarnModel(
-        title: 'v8', subtitle: 'Rs7,500,000', amount: '34', bet: "1.0"),
+        title: 'v8', subtitle: 'Rs7,500,000', amount: '34', bet: "1.2"),
     PeopleEarnModel(
-        title: 'v7', subtitle: 'Rs4,200,000', amount: '21', bet: "0.9"),
+        title: 'v7', subtitle: 'Rs4,200,000', amount: '21', bet: "1.1"),
     PeopleEarnModel(
-        title: 'v6', subtitle: 'Rs2,000,000', amount: '13', bet: "0.8"),
+        title: 'v6', subtitle: 'Rs2,000,000', amount: '13', bet: "1.0"),
     PeopleEarnModel(
-        title: 'v5', subtitle: 'Rs1,000,000', amount: '8', bet: "0.7"),
-    PeopleEarnModel(title: 'v4', subtitle: 'Rs350,000', amount: '5', bet: "0.6"),
-    PeopleEarnModel(title: 'v3', subtitle: 'Rs140,000', amount: '3', bet: "0.5"),
-    PeopleEarnModel(title: 'v2', subtitle: 'Rs5,000', amount: '2', bet: "0.4"),
-    PeopleEarnModel(title: 'v1', subtitle: 'Rs2,000', amount: '1', bet: "0.3"),
+        title: 'v5', subtitle: 'Rs1,000,000', amount: '8', bet: "0.9"),
+    PeopleEarnModel(title: 'v4', subtitle: 'Rs350,000', amount: '5', bet: "0.8"),
+    PeopleEarnModel(title: 'v3', subtitle: 'Rs140,000', amount: '3', bet: "0.7"),
+    PeopleEarnModel(title: 'v2', subtitle: 'Rs5,000', amount: '2', bet: "0.6"),
+    PeopleEarnModel(title: 'v1', subtitle: 'Rs2,000', amount: '1', bet: "0.5"),
   ];
 
   List<String> aboutRuleList = [

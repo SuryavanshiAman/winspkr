@@ -67,6 +67,7 @@ class _WithdrawState extends State<Withdraw> {
   int selectUsdt = 0;
   @override
   Widget build(BuildContext context) {
+
     final bankViewModel = Provider.of<BankViewModel>(context);
     final usdtViewModel = Provider.of<UsdtWithdrawViewModel>(context);
     final paymodeViewModel =
@@ -97,7 +98,78 @@ class _WithdrawState extends State<Withdraw> {
               shrinkWrap: true,
               children: [
                 const SizedBox(height: 20),
-                const ConstantWallet(),
+                Container(
+                  height: height * 0.17,
+                  width: width,
+                  padding: const EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+
+                      gradient : AppColors.appBarGradient
+                    // image: const DecorationImage(
+                    //     image: AssetImage(Assets.imagesCardImage),
+                    //     fit: BoxFit.fill)
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset(Assets.iconsWallet, height: 30),
+                              const SizedBox(width: 15),
+                              const Text(
+                                'Balance',
+                                style: TextStyle(fontSize: 20, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              const SizedBox(width: 15),
+                              const Text( 'Rs ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                ),
+                              ),
+
+                              Text(
+                                profileViewModel.profileData?.data?.winningWallet ==
+                                    null ? '0.00'
+                                    : '${profileViewModel.profileData?.data?.winningWallet.toStringAsFixed(2)}',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(width: 15),
+                              InkWell(
+                                  onTap: () {
+                                    Provider.of<ProfileViewModel>(context, listen: false).userProfileApi(context);
+                                    //  context.read<ProfileProvider>().fetchProfileData();
+                                    Utils.flushBarSuccessMessage(
+                                      'Wallet refresh ✔',
+                                      context,
+                                    );
+                                  },
+                                  child: Image.asset(
+                                    Assets.iconsTotalBal,
+                                    height: 30,
+                                  )),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                // const ConstantWallet(),
                 const SizedBox(height: 20),
                 const Text(
                   'Payment Channel',

@@ -35,7 +35,7 @@ class _AboutListState extends State<AboutList> {
                     child: TextWidget(
                         title: 'Level',
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.w900),
                   ),
                 ),
@@ -45,7 +45,7 @@ class _AboutListState extends State<AboutList> {
                     child: TextWidget(
                         title: 'Bet Amount (Rs)',
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.w900),
                   ),
                 ),
@@ -55,7 +55,7 @@ class _AboutListState extends State<AboutList> {
                     child: TextWidget(
                         title: 'Active Member',
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.w900),
                   ),
                 ),
@@ -63,9 +63,9 @@ class _AboutListState extends State<AboutList> {
                   width: width * 0.17,
                   child: const Center(
                     child: TextWidget(
-                        title: 'Rate %',
+                        title: 'Commission',
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.w900),
                   ),
                 ),
