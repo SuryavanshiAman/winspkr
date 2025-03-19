@@ -158,19 +158,19 @@ class PromotionWidget extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 addTextColumn(
-                                  '${promotionViewModel.promotionData != null ? promotionViewModel.promotionData!.data!.register : 0}',
+                                  '${promotionViewModel.promotionData != null ? promotionViewModel.promotionData!.data!.subordinatesRegister : 0}',
                                   'Number of Register',
                                 ),
                                 addTextColumn(
-                                  '${promotionViewModel.promotionData != null ? promotionViewModel.promotionData!.data!.depositNumber : 0}',
+                                  '${promotionViewModel.promotionData != null ? promotionViewModel.promotionData!.data!.subordinatesDepositNumber : 0}',
                                   'Deposit Number',
                                 ),
                                 addTextColumn(
-                                  '${promotionViewModel.promotionData != null ? promotionViewModel.promotionData!.data!.depositAmount : 0}',
+                                  '${promotionViewModel.promotionData != null ? promotionViewModel.promotionData!.data!.subordinatesDepositAmount : 0}',
                                   'Deposit amount',
                                 ),
                                 addTextColumn(
-                                  '${promotionViewModel.promotionData != null ? promotionViewModel.promotionData!.data!.firstDeposit : 0}',
+                                  '${promotionViewModel.promotionData != null ? promotionViewModel.promotionData!.data!.subordinatesFirstDeposit : 0}',
                                   'Number of People making first deposit',
                                 ),
                               ],

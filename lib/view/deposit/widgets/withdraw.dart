@@ -99,7 +99,7 @@ class _WithdrawState extends State<Withdraw> {
               children: [
                 const SizedBox(height: 20),
                 Container(
-                  height: height * 0.17,
+                  // height: height * 0.17,
                   width: width,
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
@@ -121,7 +121,7 @@ class _WithdrawState extends State<Withdraw> {
                               Image.asset(Assets.iconsWallet, height: 30),
                               const SizedBox(width: 15),
                               const Text(
-                                'Balance',
+                                'Winning Balance',
                                 style: TextStyle(fontSize: 20, color: Colors.white),
                               ),
                             ],
@@ -166,6 +166,8 @@ class _WithdrawState extends State<Withdraw> {
                           ),
                         ],
                       ),
+                      Text("Your winning balance is here,You can withdraw only your winnings amount. Keep playing for bigger wins.", style:TextStyle(color: AppColors.whiteColor,
+                        fontSize: 11,))
                     ],
                   ),
                 ),
@@ -562,6 +564,7 @@ class _WithdrawState extends State<Withdraw> {
                               wwm.setGetWithdraw(double.parse(v));
                             },
                           ),
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -578,23 +581,23 @@ class _WithdrawState extends State<Withdraw> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const TextWidget(
-                                title: "Inconvenience Fee",
-                                fontSize: 14,
-                                color: AppColors.whiteColor,
-                              ),
-                              TextWidget(
-                                title:
-                                    "Rs ${wwm.inconvenienceFee.toStringAsFixed(2)}",
-                                fontSize: 14,
-                                color: AppColors.whiteColor,
-                              ),
-                            ],
-                          ),
+
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //   children: [
+                          //     const TextWidget(
+                          //       title: "Inconvenience Fee",
+                          //       fontSize: 14,
+                          //       color: AppColors.whiteColor,
+                          //     ),
+                          //     TextWidget(
+                          //       title:
+                          //           "Rs ${wwm.inconvenienceFee.toStringAsFixed(2)}",
+                          //       fontSize: 14,
+                          //       color: AppColors.whiteColor,
+                          //     ),
+                          //   ],
+                          // ),
                           const SizedBox(height: 20),
                           AppBtn(
                             loading: wwm.loading,
@@ -651,7 +654,7 @@ class _WithdrawState extends State<Withdraw> {
                   child: const TextWidget(
                     textAlign: TextAlign.start,
                     title:
-                        'Note: 0% of the withdrawal amount will be deducted as bank commission Please double check the withdrawal information, if withdrawal failed or you have any other questions, please contact CS 24/7',
+                        'Note: 3% of the withdrawal amount will be deducted as bank commission Please double check the withdrawal information, if withdrawal failed or you have any other questions, please contact CS 24/7',
                     color: AppColors.whiteColor,
                     fontSize: 11,
                   ),

@@ -7,6 +7,7 @@ import 'package:wins_pkr/constants/text_widget.dart';
 import 'package:wins_pkr/generated/assets.dart';
 import 'package:wins_pkr/main.dart';
 import 'package:wins_pkr/res/app_const.dart';
+import 'package:wins_pkr/res/launcher.dart';
 import 'package:wins_pkr/view/me/widgets/change_password.dart';
 import 'package:wins_pkr/view/wingo/res/size_const.dart';
 import 'package:provider/provider.dart';
@@ -158,9 +159,27 @@ class _PersonalCenterState extends State<PersonalCenter> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TextWidget(
+                                        title: userProfileViewModel.data!.uId
+                                            .toString(),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w800,
+                                        color: AppColors.whiteColor),
+                                    InkWell(
+                                        onTap: (){
+                                          Launcher.copyToClipboard( userProfileViewModel.data!.uId
+                                              .toString(), context);
+                                        },
+                                        child: Icon(Icons.file_copy_outlined,color: AppColors.whiteColor,))
+                                  ],
+                                ),
                                 const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     TextWidget(
                                         title: 'VIP',
