@@ -282,7 +282,7 @@ class _WinGoBottomSheetState extends State<WinGoBottomSheet> {
                       ),
                       InkWell(
                         onTap: () {
-                          winGoBetViewModel.wingoBet(widget.data["game_id"], wgc.amount.text,wgc.gameIndex + 1, context);
+                          winGoBetViewModel.wingoBet(widget.data["game_id"], wgc.finalAmount.text,wgc.gameIndex + 1, context);
                         },
                         child: Container(
                           alignment: Alignment.center,

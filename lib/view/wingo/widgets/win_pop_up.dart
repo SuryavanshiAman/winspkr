@@ -75,9 +75,9 @@ class WinPopUpPage extends StatelessWidget {
                               ? 'Red Violet'
                               : winNumber == 5
                                   ? 'Green Violet'
-                                  : (winNumber == 2 &&
-                                          winNumber == 4 &&
-                                          winNumber == 6 &&
+                                  : (winNumber == 2 ||
+                                          winNumber == 4 ||
+                                          winNumber == 6 ||
                                           winNumber == 8)
                                       ? 'Red'
                                       : 'Green',

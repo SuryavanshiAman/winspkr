@@ -157,19 +157,20 @@ class WinGoController with ChangeNotifier {
   ];
 
   void decrement() {
-    int currentValue = int.tryParse(amount.text) ?? 0;
+    int currentValue = int.tryParse(finalAmount.text) ?? 0;
     if (currentValue > 0) {
       currentValue--;
-      amount.text = currentValue.toString();
+      finalAmount.text = currentValue.toString();
     }
     notifyListeners();
   }
 
   void increment() {
-    int currentValue = int.tryParse(amount.text) ?? 0;
+    int currentValue = int.tryParse(finalAmount.text) ?? 0;
     currentValue++;
-    amount.text = currentValue.toString();
+    finalAmount.text = currentValue.toString();
     notifyListeners();
+
   }
 
   void getXAmount(int x) {

@@ -71,13 +71,14 @@ class LossPopUpPage extends StatelessWidget {
                       ),
                       child: Center(
                         child: TextWidget(
-                          title: winNumber==0?'Red Violet':winNumber==5?'Green Violet':(winNumber==2&&winNumber==4&&winNumber==6&&winNumber==8)?'Red':'Green',
+                          title: winNumber==0?'Red Violet':winNumber==5?'Green Violet':(winNumber==2||winNumber==4||winNumber==6||winNumber==8)?'Red':'Green',
                           fontSize: 10,
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
+
                     Sizes.spaceWidth5,
                     Container(
                       width: width * 0.04,
@@ -112,7 +113,7 @@ class LossPopUpPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: height * 0.1),
+                SizedBox(height: height * 0.07),
                 TextWidget(
                   title: "Lose",
                   fontSize: 30,
