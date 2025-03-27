@@ -78,7 +78,11 @@ class AuthViewModel with ChangeNotifier {
           value['message'].toString(),
           context,
         );
-      } else {
+      } else if(value['status'] == 403) {
+        setLoadingThree(false);
+        Utils.flushBarErrorMessage(value['message'], context);
+      }
+      else {
         setLoadingThree(false);
         Utils.flushBarErrorMessage(
           value['message'].toString(),

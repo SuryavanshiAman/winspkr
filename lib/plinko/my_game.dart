@@ -15,6 +15,7 @@ import 'package:wins_pkr/constants/app_colors.dart';
 import 'package:wins_pkr/constants/gradient_app_bar.dart';
 import 'package:wins_pkr/plinko/modal/plinko_bet_history.dart';
 import 'package:wins_pkr/plinko/modal/plinko_result_model.dart';
+import 'package:wins_pkr/utils/routes/routers_name.dart';
 import 'package:wins_pkr/view_modal/profile_view_model.dart';
 import 'package:wins_pkr/view_modal/user_view_modal.dart';
 import 'package:provider/provider.dart';
@@ -1139,7 +1140,7 @@ class _MyGameWidgetState extends State<MyGameWidget> {
         "type": type
       }),
     );
-
+    final Map<String, dynamic> responseData = jsonDecode(response.body);
     if (response.statusCode == 200) {
       Provider.of<ProfileViewModel>(context, listen: false).userProfileApi(context);
       final Map<String, dynamic> responseData = jsonDecode(response.body);
@@ -1171,7 +1172,11 @@ class _MyGameWidgetState extends State<MyGameWidget> {
           // Provider.of<ProfileViewModel>(context, listen: false).userProfileApi(context);
         });
       });
-    } else {
+    }
+    else if(responseData["status"] == 403){
+      Utils.flushBarErrorMessage( responseData['message'].toString(), context);
+      Navigator.pushReplacementNamed(context, RoutesName.login);
+    }  else {
       //setRegLoading(false);
       final Map<String, dynamic> responseData = jsonDecode(response.body);
       setState(() {

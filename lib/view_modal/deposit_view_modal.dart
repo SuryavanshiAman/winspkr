@@ -13,6 +13,8 @@ import 'package:wins_pkr/view_modal/user_view_modal.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
+import '../utils/routes/routers_name.dart';
+
 class DepositViewModel with ChangeNotifier {
   final _depositRepository = DepositRepository();
 
@@ -84,7 +86,12 @@ class DepositViewModel with ChangeNotifier {
                         url: url,
                       )));
         }
-      } else {
+      } else if(value['status'] == 403) {
+        setLoading(false);
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+        Utils.flushBarErrorMessage(value['message'], context);
+      }else {
         setLoading(false);
         Utils.flushBarErrorMessage(
             value['message'].toString(), context);
@@ -115,6 +122,12 @@ class DepositViewModel with ChangeNotifier {
         final url = value["data"]['qrcode_url'].toString();
         if (kIsWeb) {
           Launcher.launchOnWeb(context, url);
+        }else if(value['status'] == 403) {
+          setLoading(false);
+          Navigator.of(context, rootNavigator: true).pop();
+          Navigator.pushReplacementNamed(context, RoutesName.login);
+
+          Utils.flushBarErrorMessage(value['message'], context);
         } else {
           Navigator.push(
               context,

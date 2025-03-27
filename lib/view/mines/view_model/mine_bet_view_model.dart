@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wins_pkr/utils/utils.dart';
 import 'package:wins_pkr/view/mines/repo/mine_bet_repo.dart';
 import 'package:wins_pkr/view_modal/profile_view_model.dart';
 import 'package:wins_pkr/view_modal/user_view_modal.dart';
+
+import '../../../utils/routes/routers_name.dart';
 
 class MineBetViewModel with ChangeNotifier {
   final _mineBetRepo = MineBetRepository();
@@ -31,7 +34,11 @@ class MineBetViewModel with ChangeNotifier {
         setLoading(false);
         Utils.flushBarSuccessMessage(value['message'].toString(), context);
         profileViewModel.userProfileApi(context);
-      } else {
+      } else if(value["status"] == 403){
+        Utils.flushBarErrorMessage( data['message'].toString(), context);
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+      }
+      else {
         setLoading(false);
         Utils.flushBarErrorMessage(
           value['message'].toString(), context);

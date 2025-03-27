@@ -28,6 +28,8 @@ import 'package:wins_pkr/utils/utils.dart';
 import 'package:wins_pkr/view_modal/profile_view_model.dart';
 import 'package:wins_pkr/view_modal/user_view_modal.dart';
 
+import '../utils/routes/routers_name.dart';
+
 class GameAviator extends StatefulWidget {
   const GameAviator({super.key});
 
@@ -2444,6 +2446,9 @@ class _GameAviatorState extends State<GameAviator>
     if (resData["status"] == 200) {
       context.read<ProfileViewModel>().userProfileApi(context);
       Utils.flushBarSuccessMessage(resData['message'], context);
+    }else if(resData["status"] == 403){
+      Utils.flushBarErrorMessage( resData['message'].toString(), context);
+      Navigator.pushReplacementNamed(context, RoutesName.login);
     } else {
       Utils.flushBarErrorMessage(resData['message'], context);
     }

@@ -29,6 +29,8 @@ import 'package:wins_pkr/main.dart';
 import 'package:wins_pkr/res/api_urls.dart';
 import 'package:wins_pkr/utils/utils.dart';
 
+import '../utils/routes/routers_name.dart';
+
 
 class AndarBaharHome extends StatefulWidget {
   final String gameId;
@@ -1187,7 +1189,13 @@ class _AndarBaharHomeState extends State<AndarBaharHome>
           context: context,
         );
         countAndCoinClear();
-      } else {
+      } else if(data["status"] == 403){
+
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+        Utils.flushBarErrorMessage( data['msg'].toString(), context);
+      }
+      else {
         // Error response
         String errorMessage = data['message'] ?? 'An error occurred';
         Utils.flushBarErrorMessage(errorMessage, context);

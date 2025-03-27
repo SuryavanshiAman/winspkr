@@ -1,7 +1,17 @@
+
+
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:wins_pkr/model/profile_model.dart';
 import 'package:wins_pkr/repo/profile_repo.dart';
+import 'package:wins_pkr/utils/routes/routers_name.dart';
+import 'package:wins_pkr/view/auth/login_page.dart';
 import 'package:wins_pkr/view_modal/user_view_modal.dart';
+
+import '../plinko/routes.dart';
+import '../utils/utils.dart';
 
 class ProfileViewModel with ChangeNotifier {
   final _userProfileRepository = UserProfileRepository();
@@ -40,7 +50,12 @@ class ProfileViewModel with ChangeNotifier {
       if (value.success == 200) {
         setBalance(value.data!.wallet);
         setProfile(value);
-      } else {
+      } else if(value.success == 403){
+        print('value: ${value.message}');
+        // Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+        Utils.flushBarErrorMessage(value.message??"", context);
+      }else  {
         if (kDebugMode) {
           print('value: ${value.message}');
         }

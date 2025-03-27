@@ -28,6 +28,7 @@ import 'package:wins_pkr/view_modal/profile_view_model.dart';
 import 'package:wins_pkr/view_modal/user_view_modal.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
+import '../utils/routes/routers_name.dart';
 import 'coin/distribute_coin.dart';
 import 'dragon_game_history.dart';
 import 'widgets/dragon_tiger_timer.dart';
@@ -953,7 +954,11 @@ class _DragonTigerState extends State<DragonTiger> {
           height: 100,
           context: context,
         );
-      } else {
+      } else if(data["status"] == 403){
+        Utils.flushBarErrorMessage( data['msg'].toString(), context);
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+      }
+      else {
         Utils.flushBarErrorMessage(
           data['msg'].toString(),
           context,

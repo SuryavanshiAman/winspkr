@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wins_pkr/model/withdraw_history_model.dart';
 import 'package:wins_pkr/repo/withdraw_repo.dart';
+import 'package:wins_pkr/utils/routes/routers_name.dart';
 import 'package:wins_pkr/utils/utils.dart';
 import 'package:wins_pkr/view_modal/profile_view_model.dart';
 import 'package:wins_pkr/view_modal/user_view_modal.dart';
@@ -58,7 +59,13 @@ class WithdrawViewModel with ChangeNotifier {
         setLoading(false);
         setHistoryData(value);
         Utils.flushBarSuccessMessage(value.message.toString(), context);
-      } else {
+      }  else if(value.status== 403) {
+        setLoading(false);
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+        Utils.flushBarErrorMessage(value.message??"", context);
+      }
+      else {
         setLoading(false);
         Utils.flushBarErrorMessage(value.message.toString(), context);
       }
@@ -94,6 +101,11 @@ class WithdrawViewModel with ChangeNotifier {
         clearCon();
         profileViewModel.userProfileApi(context);
         Utils.flushBarSuccessMessage(value['message'].toString(), context);
+      }  else if(value.status== 403) {
+        setLoading(false);
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+        Utils.flushBarErrorMessage(value.message??"", context);
       } else {
         setLoading(false);
         Utils.flushBarErrorMessage(value['message'].toString(), context);

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:wins_pkr/utils/routes/routers_name.dart';
 import 'package:wins_pkr/view_modal/profile_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:wins_pkr/utils/utils.dart';
@@ -45,8 +46,13 @@ class TrxBetViewModel with ChangeNotifier {
         Navigator.pop(context);
         Provider.of<ProfileViewModel>(context, listen: false).userProfileApi(context);
         Utils.flushBarSuccessMessage(
-          value['message'].toString(), context);
-      } else {
+            value['message'].toString(), context);
+      } else if(data["status"] == 403){
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+        Utils.flushBarErrorMessage( data['message'].toString(), context);
+      }
+      else {
         setLoading(false);
         Utils.flushBarErrorMessage(
           value['message'].toString(), context);

@@ -35,7 +35,12 @@ class UsdtWithdrawViewModel with ChangeNotifier {
         setLoadingOne(false);
         Utils.flushBarSuccessMessage(value['message'].toString(), context,
         );
-      } else {
+      }  else if(value.status== 403) {
+        setLoadingOne(false);
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+        Utils.flushBarErrorMessage(value['message'], context);
+      }else {
         setLoadingOne(false);
         Utils.flushBarErrorMessage(value['message'].toString(), context,
         );

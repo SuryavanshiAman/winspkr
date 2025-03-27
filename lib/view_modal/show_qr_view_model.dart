@@ -56,6 +56,11 @@ class ShowQrViewModel with ChangeNotifier {
           value['message'].toString(),
           context,
         );
+      }else if(value['status'] == 403) {
+        setLoadingOne(false);
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushReplacementNamed(context, RoutesName.login);
+        Utils.flushBarErrorMessage(value['message'], context);
       } else {
         setLoadingOne(false);
         Utils.flushBarErrorMessage(
